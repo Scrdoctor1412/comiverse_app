@@ -28,36 +28,44 @@ class HomeNavigation extends GetView<HomeNavigationViewmodel> {
             // ],
             color: Colors.white.withValues(alpha: 0.8),
             borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(20),
-              topRight: Radius.circular(20),
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
             ),
           ),
-          child: BottomNavigationBar(
-            elevation: 0,
-            currentIndex: controller.currentIndex.value,
-            onTap: (value) {
-              controller.setCurrentIndex(value);
-            },
-            selectedItemColor: AppPallete.primaryMain,
-            unselectedItemColor: Colors.grey,
-            // backgroundColor: Colors.transparent,
-            items: controller.listMenu
-                .map(
-                  (e) => BottomNavigationBarItem(
-                    icon: Icon(
-                      e.iconData,
-                      color: Colors.grey,
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
+            ),
+            child: BottomNavigationBar(
+              elevation: 0,
+              currentIndex: controller.currentIndex.value,
+              onTap: (value) {
+                controller.setCurrentIndex(value);
+              },
+              selectedItemColor: AppPallete.primaryMain,
+              unselectedItemColor: Colors.grey,
+              landscapeLayout: BottomNavigationBarLandscapeLayout.linear,
+              // type: BottomNavigationBarType.fixed,
+              // backgroundColor: Colors.transparent,
+              items: controller.listMenu
+                  .map(
+                    (e) => BottomNavigationBarItem(
+                      icon: Icon(
+                        e.iconData,
+                        color: Colors.grey,
+                      ),
+                      label: e.title,
+                      activeIcon: Icon(
+                        e.selectedIconData,
+                        color: AppPallete.primaryMain,
+                      ),
+                      backgroundColor: Colors.transparent,
+                      // activeIcon: AppPallete.primaryMain,
                     ),
-                    label: e.title,
-                    activeIcon: Icon(
-                      e.selectedIconData,
-                      color: AppPallete.primaryMain,
-                    ),
-                    backgroundColor: Colors.transparent,
-                    // activeIcon: AppPallete.primaryMain,
-                  ),
-                )
-                .toList(),
+                  )
+                  .toList(),
+            ),
           ),
         ),
       ),
